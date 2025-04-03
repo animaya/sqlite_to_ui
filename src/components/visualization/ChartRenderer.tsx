@@ -36,7 +36,7 @@ interface ChartRendererProps {
   width?: number;
 }
 
-// Default chart options based on the chart types
+// Default chart options based on chart types
 const defaultOptions = {
   responsive: true,
   maintainAspectRatio: false,
