@@ -16,6 +16,16 @@ export const handler: Handlers = {
     try {
       // Construct the file path with absolute path
       const filePath = `${Deno.cwd()}/static/${path}`;
+      console.log(`Attempting to read file: ${filePath}`);
+      
+      // Check if file exists
+      try {
+        const fileInfo = await Deno.stat(filePath);
+        console.log(`File exists: ${fileInfo.isFile}`);
+      } catch (e) {
+        console.error(`File does not exist: ${filePath}`, e);
+        return new Response(`File not found: ${filePath}`, { status: 404 });
+      }
       
       // Get the file
       const file = await Deno.readFile(filePath);
