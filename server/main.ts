@@ -25,9 +25,31 @@ try {
 
 // Configure server options
 const serverOptions = {
-  port: 8000,
+  port: parseInt(Deno.env.get("PORT") || "8000"),
   hostname: "0.0.0.0", // Allow connections from any IP
 };
+
+// Function to check if port is in use
+async function isPortAvailable(port: number): Promise<boolean> {
+  try {
+    const listener = Deno.listen({ port });
+    listener.close();
+    return true;
+  } catch (err) {
+    if (err instanceof Deno.errors.AddrInUse) {
+      console.warn(`Port ${port} is already in use. Trying another port...`);
+      return false;
+    }
+    throw err;
+  }
+}
+
+// Find available port
+let retries = 5;
+while (retries > 0 && !await isPortAvailable(serverOptions.port)) {
+  serverOptions.port++;
+  retries--;
+}
 
 // Start the Fresh server
 console.log(`Starting SQLite Visualizer server on http://localhost:${serverOptions.port}...`);
