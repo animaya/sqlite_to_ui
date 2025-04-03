@@ -11,11 +11,11 @@ import * as notFoundHandler from "./middleware/errorHandler.ts";
 
 const manifest = {
   routes: {
-    "./routes/connections.ts": $0,
-    "./routes/export.ts": $1,
-    "./routes/tables.ts": $2,
-    "./routes/templates.ts": $3,
-    "./routes/visualizations.ts": $4,
+    "/api/connections": $0,
+    "/api/export": $1,
+    "/api/tables": $2,
+    "/api/templates": $3,
+    "/api/visualizations": $4,
   },
   islands: {},
   baseUrl: import.meta.url,
