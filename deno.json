@@ -1,8 +1,29 @@
 {
   "tasks": {
-    "dev": "deno run --allow-net --allow-read --allow-write --allow-env --watch server/main.ts",
-    "start": "deno run --allow-net --allow-read --allow-write --allow-env server/main.ts",
-    "build": "deno run --allow-net --allow-read --allow-write --allow-env scripts/build.js"
+    "dev": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run --watch server/main.ts",
+    "start": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run server/main.ts",
+    "build": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run scripts/build.js",
+    "setup-db": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run scripts/setup-db.ts",
+    "install-deps": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run scripts/install-deps.ts",
+    "test": "deno test --allow-net --allow-read --allow-write --allow-env",
+    "update": "deno cache --reload import_map.json"
   },
-  "importMap": "./import_map.json"
+  "importMap": "./import_map.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended"]
+    }
+  },
+  "fmt": {
+    "options": {
+      "indentWidth": 2,
+      "lineWidth": 100,
+      "singleQuote": false,
+      "useTabs": false
+    }
+  }
 }

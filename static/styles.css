@@ -1,9 +1,105 @@
-/* Base styles from Tailwind */
-@import "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css";
+/* Tailwind base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Custom application styling */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  @apply bg-slate-50 text-slate-900;
 }
 
-/* Additional custom styling can be added here */
+/* Chart container styling */
+.chart-container {
+  @apply relative;
+  min-height: 300px;
+}
+
+/* Form element focus rings */
+input:focus, select:focus, textarea:focus, button:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-opacity-50;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 rounded hover:bg-slate-400 transition-colors;
+}
+
+/* Transition defaults */
+.transition-default {
+  @apply transition duration-150 ease-in-out;
+}
+
+/* Animation for loading states */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Table styling enhancements */
+table {
+  @apply w-full border-collapse;
+}
+
+th {
+  @apply px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider bg-slate-50 border-b border-slate-200;
+}
+
+td {
+  @apply px-4 py-3 text-sm text-slate-900 border-b border-slate-200;
+}
+
+tr:hover td {
+  @apply bg-slate-50;
+}
+
+/* Custom utilities */
+.text-ellipsis {
+  @apply overflow-hidden whitespace-nowrap text-ellipsis;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  @apply fixed inset-0 bg-slate-900 bg-opacity-50 backdrop-blur-sm transition-opacity;
+}
+
+/* Responsive utilities */
+@screen sm {
+  .container-sm {
+    @apply max-w-screen-sm mx-auto px-4;
+  }
+}
+
+@screen md {
+  .container-md {
+    @apply max-w-screen-md mx-auto px-4;
+  }
+}
+
+@screen lg {
+  .container-lg {
+    @apply max-w-screen-lg mx-auto px-4;
+  }
+}
+
+@screen xl {
+  .container-xl {
+    @apply max-w-screen-xl mx-auto px-4;
+  }
+}
