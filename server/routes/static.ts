@@ -14,8 +14,8 @@ export const handler: Handlers = {
     const { path } = ctx.params;
     
     try {
-      // Construct the file path
-      const filePath = `./static/${path}`;
+      // Construct the file path with absolute path
+      const filePath = `${Deno.cwd()}/static/${path}`;
       
       // Get the file
       const file = await Deno.readFile(filePath);
