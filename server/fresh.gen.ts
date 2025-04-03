@@ -13,13 +13,13 @@ import * as notFoundHandler from "./middleware/errorHandler.ts";
 
 const manifest = {
   routes: {
-    "/api/connections": $0,
-    "/api/export": $1,
-    "/api/tables": $2,
-    "/api/templates": $3,
-    "/api/visualizations": $4,
-    "/": $5,
-    "/static/:path*": $6
+    "./routes/connections.ts": $0,
+    "./routes/export.ts": $1,
+    "./routes/tables.ts": $2,
+    "./routes/templates.ts": $3,
+    "./routes/visualizations.ts": $4,
+    "./routes/index.ts": $5,
+    "./routes/static.ts": $6
   },
   islands: {},
   baseUrl: import.meta.url,
