@@ -21,7 +21,8 @@ type Route =
   | 'visualizationBuilder'
   | 'savedVisualizations';
 
-export default function App() {
+// Main App component (both default and named export)
+export function App() {
   // Current route/page
   const currentRoute = useSignal<Route>('connections');
   
@@ -164,3 +165,6 @@ export default function App() {
     </MainLayout>
   );
 }
+
+// Default export (for backward compatibility)
+export default App;
