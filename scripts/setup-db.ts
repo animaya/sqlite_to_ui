@@ -5,6 +5,7 @@
  */
 
 import { DB } from "sqlite";
+import { exists } from "https://deno.land/std@0.170.0/fs/mod.ts";
 import { CREATE_TABLE_SQL as CREATE_CONNECTIONS_TABLE } from "../server/models/connection.ts";
 import { CREATE_TABLE_SQL as CREATE_VISUALIZATIONS_TABLE } from "../server/models/visualization.ts";
 import { CREATE_TABLE_SQL as CREATE_TEMPLATES_TABLE } from "../server/models/template.ts";
@@ -22,6 +23,11 @@ const DEFAULT_TEMPLATES = [
           title: {
             display: true,
             text: "Top Items"
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
           }
         }
       }
@@ -41,6 +47,11 @@ const DEFAULT_TEMPLATES = [
             display: true,
             text: "Trend Analysis"
           }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
         }
       }
     }),
@@ -58,23 +69,120 @@ const DEFAULT_TEMPLATES = [
           title: {
             display: true,
             text: "Distribution Analysis"
+          },
+          legend: {
+            position: 'right'
           }
         }
       }
     }),
     category: "Analysis",
     is_default: 1
+  },
+  {
+    name: "Comparison by Category",
+    description: "Compares values across different categories",
+    type: "bar",
+    config: JSON.stringify({
+      type: "bar",
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: "Category Comparison"
+          }
+        },
+        indexAxis: 'y',
+        scales: {
+          x: {
+            beginAtZero: true
+          }
+        }
+      }
+    }),
+    category: "Analysis",
+    is_default: 1
+  },
+  {
+    name: "Average by Group",
+    description: "Calculates and displays averages across groups",
+    type: "bar",
+    config: JSON.stringify({
+      type: "bar",
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: "Group Averages"
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    }),
+    category: "Performance",
+    is_default: 1
   }
 ];
+
+// Database file name
+const DB_FILE = "sqlite_visualizer_app.db";
+
+/**
+ * Check if database already exists and has templates
+ */
+async function databaseNeedsSetup(): Promise<boolean> {
+  // Check if file exists
+  if (!(await exists(DB_FILE))) {
+    return true;
+  }
+  
+  // Check if templates table exists and has content
+  try {
+    const db = new DB(DB_FILE);
+    
+    try {
+      // Check if templates table exists
+      const tableResult = db.query<[string]>(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='insight_templates'"
+      );
+      
+      if (tableResult.length === 0) {
+        return true;
+      }
+      
+      // Check if templates exist
+      const templateCount = db.query<[number]>(
+        "SELECT COUNT(*) FROM insight_templates"
+      )[0][0];
+      
+      return templateCount === 0;
+    } finally {
+      db.close();
+    }
+  } catch {
+    // If any error occurs, assume setup is needed
+    return true;
+  }
+}
 
 /**
  * Initialize the application database
  */
 async function initDatabase() {
+  // Check if setup is needed
+  if (!(await databaseNeedsSetup())) {
+    console.log("Database already initialized, skipping setup");
+    return;
+  }
+  
   console.log("Initializing application database...");
   
   // Open database connection
-  const db = new DB("sqlite_visualizer_app.db");
+  const db = new DB(DB_FILE);
   
   try {
     // Create tables
@@ -114,6 +222,7 @@ async function initDatabase() {
     console.log("Database initialization complete");
   } catch (error) {
     console.error("Error initializing database:", error);
+    Deno.exit(1);
   } finally {
     // Close database connection
     db.close();
