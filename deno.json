@@ -1,29 +1,40 @@
 {
+  "lock": false,
   "tasks": {
-    "dev": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run --watch server/main.ts",
-    "start": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run server/main.ts",
-    "build": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run scripts/build.js",
-    "setup-db": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run scripts/setup-db.ts",
-    "install-deps": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run scripts/install-deps.ts",
-    "test": "deno test --allow-net --allow-read --allow-write --allow-env",
-    "update": "deno cache --reload import_map.json"
-  },
-  "importMap": "./import_map.json",
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+    "start": "deno run -A main.ts",
+    "dev": "deno run -A --watch=static/,routes/ dev.ts",
+    "build": "deno run -A dev.ts build",
+    "preview": "deno run -A main.ts",
+    "update": "deno run -A -r https://fresh.deno.dev/update .",
+    "setup-db": "deno run -A scripts/setup-db.ts"
   },
   "lint": {
     "rules": {
-      "tags": ["recommended"]
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
     }
   },
-  "fmt": {
-    "options": {
-      "indentWidth": 2,
-      "lineWidth": 100,
-      "singleQuote": false,
-      "useTabs": false
-    }
+  "exclude": [
+    "**/_fresh/*"
+  ],
+  "imports": {
+    "$fresh/": "https://deno.land/x/fresh@1.5.4/",
+    "preact": "https://esm.sh/preact@10.18.1",
+    "preact/": "https://esm.sh/preact@10.18.1/",
+    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
+    "$std/": "https://deno.land/std@0.193.0/",
+    "tailwindcss": "https://esm.sh/tailwindcss@3.3.3",
+    "tailwindcss/": "https://esm.sh/tailwindcss@3.3.3/",
+    "chart.js": "https://esm.sh/chart.js@4.3.0",
+    "sqlite": "https://deno.land/x/sqlite@v3.9.1/mod.ts"
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   }
 }

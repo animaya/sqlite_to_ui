@@ -1,0 +1,11 @@
+{
+  "name": "sqlite-visualizer",
+  "version": "1.0.0",
+  "description": "A clean, user-friendly web application that visualizes SQLite database content",
+  "main": "src/App.tsx",
+  "scripts": {
+    "build": "deno run --allow-net --allow-read --allow-write --allow-env --allow-run scripts/build.js",
+    "dev": "deno task dev",
+    "start": "deno task start"
+  }
+}

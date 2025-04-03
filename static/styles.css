@@ -1,105 +1,126 @@
-/* Tailwind base */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-/* Custom application styling */
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  @apply bg-slate-50 text-slate-900;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+button {
+  color: inherit;
+}
+button, [role="button"] {
+  cursor: pointer;
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 1em;
+}
+img,
+svg {
+  display: block;
+}
+img,
+video {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Chart container styling */
-.chart-container {
-  @apply relative;
-  min-height: 300px;
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-
-/* Form element focus rings */
-input:focus, select:focus, textarea:focus, button:focus-visible {
-  @apply outline-none ring-2 ring-blue-500 ring-opacity-50;
+.transition-colors {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
-
-/* Custom scrollbar styling */
-::-webkit-scrollbar {
-  @apply w-2 h-2;
+.my-6 {
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
-
-::-webkit-scrollbar-track {
-  @apply bg-slate-100;
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
 }
-
-::-webkit-scrollbar-thumb {
-  @apply bg-slate-300 rounded hover:bg-slate-400 transition-colors;
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
-
-/* Transition defaults */
-.transition-default {
-  @apply transition duration-150 ease-in-out;
+.my-4 {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
-
-/* Animation for loading states */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
-
-.animate-spin {
-  animation: spin 1s linear infinite;
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
-
-/* Table styling enhancements */
-table {
-  @apply w-full border-collapse;
+.py-8 {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 }
-
-th {
-  @apply px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider bg-slate-50 border-b border-slate-200;
+.bg-\[\#86efac\] {
+  background-color: #86efac;
 }
-
-td {
-  @apply px-4 py-3 text-sm text-slate-900 border-b border-slate-200;
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
-
-tr:hover td {
-  @apply bg-slate-50;
+.py-6 {
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
 }
-
-/* Custom utilities */
-.text-ellipsis {
-  @apply overflow-hidden whitespace-nowrap text-ellipsis;
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
-
-/* Modal backdrop */
-.modal-backdrop {
-  @apply fixed inset-0 bg-slate-900 bg-opacity-50 backdrop-blur-sm transition-opacity;
+.py-1 {
+  padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
 }
-
-/* Responsive utilities */
-@screen sm {
-  .container-sm {
-    @apply max-w-screen-sm mx-auto px-4;
-  }
+.border-gray-500 {
+  border-color: #6b7280;
 }
-
-@screen md {
-  .container-md {
-    @apply max-w-screen-md mx-auto px-4;
-  }
+.bg-white {
+  background-color: #fff;
 }
-
-@screen lg {
-  .container-lg {
-    @apply max-w-screen-lg mx-auto px-4;
-  }
+.flex {
+  display: flex;
 }
-
-@screen xl {
-  .container-xl {
-    @apply max-w-screen-xl mx-auto px-4;
-  }
+.gap-8 {
+  grid-gap: 2rem;
+  gap: 2rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.max-w-screen-md {
+  max-width: 768px;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.border-2 {
+  border-width: 2px;
+}
+.rounded {
+  border-radius: 0.25rem;
+}
+.hover\:bg-gray-200:hover {
+  background-color: #e5e7eb;
 }

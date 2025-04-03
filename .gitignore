@@ -1,13 +1,9 @@
-# Deno
-.deno_dir/
-.vscode/
+# dotenv environment variable files
 .env
+.env.development.local
+.env.test.local
+.env.production.local
 .env.local
-.DS_Store
 
-# Generated files
-dist/
-build/
-
-# Logs
-*.log
+# Fresh build directory
+_fresh/

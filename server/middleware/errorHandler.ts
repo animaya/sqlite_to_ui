@@ -4,7 +4,7 @@
  * Catches errors in request handling and returns appropriate responses.
  */
 
-import { MiddlewareHandler } from "fresh/server.ts";
+import { MiddlewareHandler } from "$fresh/server.ts";
 
 /**
  * Application error class

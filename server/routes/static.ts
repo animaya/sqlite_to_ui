@@ -4,11 +4,11 @@
  * Serves static assets like JavaScript, CSS, and images.
  */
 
-import { Handlers } from "fresh/server.ts";
+import { Handlers } from "$fresh/server.ts";
 
 export const handler: Handlers = {
   /**
-   * GET /static/:path* - Serve static files
+   * GET /static/:path - Serve static files
    */
   async GET(req, ctx) {
     const { path } = ctx.params;
@@ -16,15 +16,15 @@ export const handler: Handlers = {
     try {
       // Construct the file path with absolute path
       const filePath = `${Deno.cwd()}/static/${path}`;
-      console.log(`Attempting to read file: ${filePath}`);
       
       // Check if file exists
       try {
         const fileInfo = await Deno.stat(filePath);
-        console.log(`File exists: ${fileInfo.isFile}`);
+        if (!fileInfo.isFile) {
+          return new Response(`Not a file: ${path}`, { status: 404 });
+        }
       } catch (e) {
-        console.error(`File does not exist: ${filePath}`, e);
-        return new Response(`File not found: ${filePath}`, { status: 404 });
+        return new Response(`File not found: ${path}`, { status: 404 });
       }
       
       // Get the file
@@ -52,7 +52,7 @@ export const handler: Handlers = {
       });
     } catch (error) {
       console.error(`Error serving static file ${path}:`, error);
-      return new Response("File not found", { status: 404 });
+      return new Response(`Error serving file: ${error.message}`, { status: 500 });
     }
   }
 };

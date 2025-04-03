@@ -1,35 +1,16 @@
-# SQLite Visualizer
+# Fresh project
 
-A clean, user-friendly web application that visualizes SQLite database content in both tabular and chart formats, allowing for simple data exploration and insight generation without requiring SQL knowledge.
+Your new Fresh project is ready to go. You can follow the Fresh "Getting
+Started" guide here: https://fresh.deno.dev/docs/getting-started
 
-## Features
+### Usage
 
-- Connect to SQLite databases via localhost
-- Table View with sorting and filtering
-- Visualization View with various chart types
-- Insight Templates for common business analyses
-- Clean, minimal UI using Tailwind CSS and shadcn components
+Make sure to install Deno: https://deno.land/manual/getting_started/installation
 
-## Technology Stack
+Then start the project:
 
-### Frontend
-- Preact with TypeScript
-- Tailwind CSS with shadcn UI
-- Chart.js for visualizations
+```
+deno task start
+```
 
-### Backend
-- Deno runtime
-- Fresh framework
-- SQLite for database access
-
-## Setup Instructions
-
-TODO: Add setup instructions
-
-## Development
-
-TODO: Add development instructions
-
-## Project Structure
-
-TODO: Add project structure documentation
+This will watch the project directory and restart as necessary.

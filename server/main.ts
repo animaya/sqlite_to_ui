@@ -5,8 +5,9 @@
  * the SQLite Visualizer backend services.
  */
 
-import { start } from "fresh/server.ts";
+import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
+import { additionalRoutes } from "./routes_config.ts";
 import { initAppDatabase } from "./services/configurationManager.ts";
 import { errorHandler } from "./middleware/errorHandler.ts";
 

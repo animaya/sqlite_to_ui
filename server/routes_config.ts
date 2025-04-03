@@ -9,5 +9,5 @@ import * as staticRoute from "./routes/static.ts";
 
 export const additionalRoutes = {
   "/": indexRoute,
-  "/static/:path*": staticRoute
+  "/static/:path": staticRoute
 };
