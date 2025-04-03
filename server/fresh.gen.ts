@@ -6,16 +6,20 @@ import * as $1 from "./routes/export.ts";
 import * as $2 from "./routes/tables.ts";
 import * as $3 from "./routes/templates.ts";
 import * as $4 from "./routes/visualizations.ts";
+import * as $5 from "./routes/index.ts";
+import * as $6 from "./routes/static.ts";
 import * as errorHandler from "./middleware/errorHandler.ts";
 import * as notFoundHandler from "./middleware/errorHandler.ts";
 
 const manifest = {
   routes: {
-    "./routes/connections.ts": $0,
-    "./routes/export.ts": $1,
-    "./routes/tables.ts": $2,
-    "./routes/templates.ts": $3,
-    "./routes/visualizations.ts": $4,
+    "/api/connections": $0,
+    "/api/export": $1,
+    "/api/tables": $2,
+    "/api/templates": $3,
+    "/api/visualizations": $4,
+    "/": $5,
+    "/static/:path*": $6
   },
   islands: {},
   baseUrl: import.meta.url,

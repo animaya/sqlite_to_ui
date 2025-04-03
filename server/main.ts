@@ -7,8 +7,6 @@
 
 import { start } from "fresh/server.ts";
 import manifest from "./fresh.gen.ts";
-import * as indexRoute from "./routes/index.ts";
-import * as staticRoute from "./routes/static.ts";
 import { initAppDatabase } from "./services/configurationManager.ts";
 import { errorHandler } from "./middleware/errorHandler.ts";
 
@@ -30,10 +28,6 @@ const serverOptions = {
   port: 8000,
   hostname: "0.0.0.0", // Allow connections from any IP
 };
-
-// Add manual routes to auto-generated manifest
-manifest.routes["/"] = indexRoute;
-manifest.routes["/static/:path*"] = staticRoute;
 
 // Start the Fresh server
 console.log(`Starting SQLite Visualizer server on http://localhost:${serverOptions.port}...`);
