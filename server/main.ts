@@ -7,7 +7,6 @@
 
 import { start } from "fresh/server.ts";
 import manifest from "./fresh.gen.ts";
-import { additionalRoutes } from "./routes_config.ts";
 import { initAppDatabase } from "./services/configurationManager.ts";
 import { errorHandler } from "./middleware/errorHandler.ts";
 
@@ -52,18 +51,9 @@ while (retries > 0 && !await isPortAvailable(serverOptions.port)) {
   retries--;
 }
 
-// Merge auto-generated routes with our manual routes
-const mergedManifest = {
-  ...manifest,
-  routes: {
-    ...manifest.routes,
-    ...additionalRoutes
-  }
-};
-
 // Start the Fresh server
 console.log(`Starting SQLite Visualizer server on http://localhost:${serverOptions.port}...`);
-await start(mergedManifest, { ...serverOptions, middleware: { global: globalMiddleware } });
+await start(manifest, { ...serverOptions, middleware: { global: globalMiddleware } });
 console.log(`SQLite Visualizer server running on http://localhost:${serverOptions.port}`);
 
 // Handle graceful shutdown
